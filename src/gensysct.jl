@@ -5,8 +5,8 @@
 ```
 gensysct(Γ0, Γ1, c, Ψ, Π)
 gensysct(Γ0, Γ1, c, Ψ, Π, div)
-gensysct(F::Base.LinAlg.GeneralizedSchur, c, Ψ, Π)
-gensysct(F::Base.LinAlg.GeneralizedSchur, c, Ψ, Π, div)
+gensysct(F::LinearAlgebra.GeneralizedSchur, c, Ψ, Π)
+gensysct(F::LinearAlgebra.GeneralizedSchur, c, Ψ, Π, div)
 ```
 
 Generate state-space solution to canonical-form DSGE model.
@@ -57,11 +57,11 @@ function gensysct(Γ0, Γ1, c, Ψ, Π, args...)
     gensysct(F, c, Ψ, Π, args...)
 end
 
-function gensysct(F::Base.LinAlg.GeneralizedSchur, c, Ψ, Π)
+function gensysct(F::LinearAlgebra.GeneralizedSchur, c, Ψ, Π)
     gensysct(F, c, Ψ, Π, new_divct(F))
 end
 
-function gensysct(F::Base.LinAlg.GeneralizedSchur, c, Ψ, Π, div)
+function gensysct(F::LinearAlgebra.GeneralizedSchur, c, Ψ, Π, div)
     eu = [0, 0]
     a, b = F[:S], F[:T]
     n = size(a, 1)
@@ -141,7 +141,7 @@ end
 
 
 
-function new_divct(F::Base.LinAlg.GeneralizedSchur)
+function new_divct(F::LinearAlgebra.GeneralizedSchur)
     a, b = F[:S], F[:T]
     n = size(a, 1)
     div = 0.001
