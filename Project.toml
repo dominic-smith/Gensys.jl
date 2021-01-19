@@ -2,3 +2,5 @@ authors = [ "Quant Econ <quantecon@example.com>"]
 name = "Gensys"
 uuid = "ffe3c7b8-124d-4ebf-8019-fbd68b3984ca"
 version = "0.2"
+[deps]
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
