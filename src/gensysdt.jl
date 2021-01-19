@@ -5,8 +5,8 @@
 ```
 gensysdt(Γ0, Γ1, c, Ψ, Π)
 gensysdt(Γ0, Γ1, c, Ψ, Π, div)
-gensysdt(F::Base.LinAlg.GeneralizedSchur, c, Ψ, Π)
-gensysdt(F::Base.LinAlg.GeneralizedSchur, c, Ψ, Π, div)
+gensysdt(F::LinearAlgebra.GeneralizedSchur, c, Ψ, Π)
+gensysdt(F::LinearAlgebra.GeneralizedSchur, c, Ψ, Π, div)
 ```
 
 Generate state-space solution to canonical-form DSGE model.
@@ -49,14 +49,14 @@ function gensysdt(Γ0, Γ1, c, Ψ, Π, args...)
     gensysdt(F, c, Ψ, Π, args...)
 end
 
-function gensysdt(F::Base.LinAlg.GeneralizedSchur, c, Ψ, Π)
+function gensysdt(F::LinearAlgebra.GeneralizedSchur, c, Ψ, Π)
     gensysdt(F, c, Ψ, Π, new_div(F))
 end
 
 const ϵ = sqrt(eps()) * 10
 
 # Method that does the real work. Work directly on the decomposition F
-function gensysdt(F::Base.LinAlg.GeneralizedSchur, c, Ψ, Π, div)
+function gensysdt(F::LinearAlgebra.GeneralizedSchur, c, Ψ, Π, div)
     eu = [0, 0]
     a, b = F[:S], F[:T]
     n = size(a, 1)
@@ -157,7 +157,7 @@ function gensysdt(F::Base.LinAlg.GeneralizedSchur, c, Ψ, Π, div)
 end
 
 
-function new_div(F::Base.LinAlg.GeneralizedSchur)
+function new_div(F::LinearAlgebra.GeneralizedSchur)
     a, b = F[:S], F[:T]
     n = size(a, 1)
     div = 1.01
